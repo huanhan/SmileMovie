@@ -7,7 +7,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/common_red</item>
-        <item name="colorPrimaryDark">@color/common_red</item>
+        <item name="colorPrimaryDark">@color/common_black</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

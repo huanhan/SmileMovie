@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/mViewPager"
+    <FrameLayout
+        android:id="@+id/mContaier"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"></FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/mBottomNavBar"
-        app:menu="@menu/bottom_navigation"
-        style="@style/MatchWrap" />
+        style="@style/MatchWrap"
+        app:menu="@menu/bottom_navigation" />
 
 
 </LinearLayout>

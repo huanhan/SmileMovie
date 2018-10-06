@@ -3,4 +3,9 @@
     <string name="home">首页</string>
     <string name="listener">倾听</string>
     <string name="my">我的</string>
+    <string name="recommend">推荐</string>
+    <string name="film">电影</string>
+    <string name="tvplay">电视剧</string>
+    <string name="variety">综艺</string>
+    <string name="comic">动漫</string>
 </resources>

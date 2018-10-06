@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_live"
+        android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/home" />
 
     <item
-        android:id="@+id/navigation_travel"
+        android:id="@+id/navigation_listener"
         android:icon="@drawable/ic_mood_black_24dp"
         android:title="@string/listener" />
 
 
     <item
-        android:id="@+id/navigation_phone"
+        android:id="@+id/navigation_my"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/my" />
 </menu>
