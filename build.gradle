@@ -11,6 +11,8 @@ buildscript {
     ext.dagger_version = '2.11'
     ext.rx_Lifecycle_version = '1.0'
     ext.glide_version = '3.7.0'
+    ext.banner_version = '1.4.10'
+    ext.base_recycler_view_adapter_helper_version = '2.9.42'
 
     repositories {
         google()
@@ -29,6 +31,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 

@@ -65,4 +65,10 @@ dependencies {
 
     //Glide
     api "com.github.bumptech.glide:glide:$glide_version"
+
+    //BaseRecyclerViewAdapterHelper
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$base_recycler_view_adapter_helper_version"
+
+    //banner
+    api  "com.youth.banner:banner:$banner_version"
 }

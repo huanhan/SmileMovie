@@ -8,4 +8,5 @@
     <string name="tvplay">电视剧</string>
     <string name="variety">综艺</string>
     <string name="comic">动漫</string>
+    <string name="search_tip">搜你想看</string>
 </resources>
