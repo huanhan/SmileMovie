@@ -2,7 +2,6 @@ package xin.lrvik.datacenter.parser
 
 import xin.lrvik.datacenter.pojo.FilmInfos
 import xin.lrvik.datacenter.pojo.HomeInfos
-import xin.lrvik.datacenter.pojo.Film
 import xin.lrvik.datacenter.pojo.PageInfo
 
 /**

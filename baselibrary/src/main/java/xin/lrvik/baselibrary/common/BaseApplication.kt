@@ -1,13 +1,13 @@
 package lrvik.xin.base.common
 
-import android.app.Application
 import android.content.Context
+import android.support.multidex.MultiDexApplication
 import lrvik.xin.base.injection.component.AppComponent
 import lrvik.xin.base.injection.component.DaggerAppComponent
 import lrvik.xin.base.injection.module.AppModule
 
 
-class BaseApplication : Application() {
+class BaseApplication : MultiDexApplication() {
 
     lateinit var appComponent: AppComponent
 

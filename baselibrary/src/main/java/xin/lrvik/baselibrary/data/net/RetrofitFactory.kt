@@ -5,8 +5,9 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 
@@ -17,13 +18,13 @@ class RetrofitFactory private constructor() {
         }
     }
 
-    private val retrofit: Retrofit
-    private val interceptor:Interceptor
+    private val retrofitGson: Retrofit
+    private val retrofitString: Retrofit
+    private val interceptor: Interceptor
 
     init {
         //增加过滤器，给每个请求增加请求头
-        interceptor= Interceptor {
-            chain ->
+        interceptor = Interceptor { chain ->
             val request = chain.request()
                     .newBuilder()
                     //.addHeader("Content-Type", "application/json")
@@ -34,10 +35,17 @@ class RetrofitFactory private constructor() {
         }
 
         //创建retrofit，设置client，增加转换工厂，以及RX适配器
-        retrofit = Retrofit.Builder()
+        retrofitGson = Retrofit.Builder()
                 .baseUrl(BaseConstant.SERVICE_ADDRESS)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())//支持json解析
+                .client(initClient())
+                .build()
+
+        retrofitString = Retrofit.Builder()
+                .baseUrl(BaseConstant.SERVICE_ADDRESS)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())//支持文本解析
                 .client(initClient())
                 .build()
     }
@@ -60,6 +68,8 @@ class RetrofitFactory private constructor() {
     }
 
     //获取获取请求服务
-    fun <T> create(service: Class<T>): T = retrofit.create(service)
+    fun <T> createGson(service: Class<T>): T = retrofitGson.create(service)
+
+    fun <T> createString(service: Class<T>): T = retrofitString.create(service)
 
 }

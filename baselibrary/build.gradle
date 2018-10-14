@@ -45,15 +45,16 @@ dependencies {
     api "org.jetbrains.anko:anko-commons:$anko_version"
 
     //RxKotlin and RxAndroid
-    api "io.reactivex:rxkotlin:$rx_kotlin_version"
-    api "io.reactivex:rxandroid:$rx_android_version"
+    api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+    api "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 
     //Retrofit
     api "com.squareup.okhttp3:okhttp:$okhttp_version"
     api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    api "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
+    api "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     //Dagger2
     api "com.google.dagger:dagger:$dagger_version"
@@ -71,4 +72,7 @@ dependencies {
 
     //banner
     api  "com.youth.banner:banner:$banner_version"
+
+    implementation 'com.android.support:multidex:1.0.2'
+
 }

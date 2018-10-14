@@ -9,19 +9,18 @@ import java.util.*
  * Author by 豢涵, Email huanhanfu@126.com, Date on 2018/10/14.
  *
  */
-class KKWParser : Parser {
-
+class BBYParser : Parser {
 
     override fun getHostName(): String {
-        return "看看屋"
+        return "聚看tv"
     }
 
     override fun getHostUrl(): String {
-        return "https://m.kankanwu.com/"
+        return "https://m.jukantv.com/"
     }
 
     override fun getHomeUrl(): String {
-        return "https://m.kankanwu.com/"
+        return "https://m.jukantv.com/"
     }
 
     override fun getHomeCotent(html: String): HomeInfos {
@@ -30,7 +29,6 @@ class KKWParser : Parser {
         val films = ArrayList<Film>()
         val scrolls = ArrayList<Film>()
 
-        //看看屋首页正文
         val list_tab_img = dom.getElementsByClass("list_tab_img")
         var listTabImg = list_tab_img.filter { it.id() == "resize_list" }
         listTabImg.forEach {
@@ -49,13 +47,11 @@ class KKWParser : Parser {
             }
         }
 
-        //看看屋首页滚动
-        val focusList = dom.getElementsByClass("focusList")[0]
-        val lis=focusList.getElementsByTag("li")
-        lis.forEach {
+        val focusList = dom.getElementsByClass("focusList")
+        focusList.forEach {
             val a = it.getElementsByTag("a")
             val href = a[0].attr("href")
-            val img = getHostUrl()+a[0].getElementsByTag("img").attr("src")
+            val img = a[0].getElementsByTag("img").attr("src")
             val em = a[0].getElementsByTag("em").text()
 
             scrolls.add(Film(detailUrl = href, imgUrl = img, title = em))
