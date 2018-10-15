@@ -18,11 +18,14 @@ import javax.inject.Inject
 class ParseHandler @Inject constructor() {
 
 
-    @Inject
-    lateinit var htmlRepository: HtmlRepository
+    var htmlRepository: HtmlRepository = HtmlRepository()
 
 
     companion object {
+        val instance: ParseHandler by lazy {
+            ParseHandler()
+        }
+
         var lable: String = ""
         lateinit var parser: Parser
 

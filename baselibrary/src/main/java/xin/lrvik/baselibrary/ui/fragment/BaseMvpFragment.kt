@@ -8,6 +8,7 @@ import lrvik.xin.base.injection.module.ActivityModule
 import lrvik.xin.base.injection.module.LifecycleProviderModule
 import lrvik.xin.base.presenter.BasePresenter
 import lrvik.xin.base.presenter.view.BaseView
+import lrvik.xin.base.widget.ProgressLoading
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
@@ -18,13 +19,14 @@ open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), Base
 
     lateinit var activityComponent: ActivityComponent
 
+    private lateinit var mLoadingDialog: ProgressLoading
 
     override fun showLoading() {
-
+        mLoadingDialog.showLoading()
     }
 
     override fun hideLoading() {
-
+        mLoadingDialog.hideLoading()
     }
 
     override fun onError(text: String) {
@@ -36,6 +38,8 @@ open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), Base
         super.onCreate(savedInstanceState)
         initActivityInjection()
         injectComponent()
+
+        mLoadingDialog = ProgressLoading.create(activity!!)
     }
 
     protected abstract fun injectComponent()

@@ -11,10 +11,7 @@ import javax.inject.Inject
  */
 class MoviesServiceImpl @Inject constructor():MoviesService {
 
-    @Inject
-    lateinit var handler: ParseHandler
-
     override fun moviesData(type: String, page: Int,method: (PageInfo) -> Unit) {
-        handler.getTypeData(type, page, method)
+        ParseHandler.instance.getTypeData(type, page, method)
     }
 }

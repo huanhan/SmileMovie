@@ -70,7 +70,7 @@ dependencies {
     //BaseRecyclerViewAdapterHelper
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$base_recycler_view_adapter_helper_version"
 
-    //banner
+    //banner  此库用代码创建banner有问题，待优化
     api  "com.youth.banner:banner:$banner_version"
 
     implementation 'com.android.support:multidex:1.0.2'

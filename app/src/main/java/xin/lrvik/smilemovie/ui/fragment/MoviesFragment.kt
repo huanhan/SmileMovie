@@ -5,14 +5,17 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_movies.*
 import lrvik.xin.base.ui.fragment.BaseMvpFragment
+import org.jetbrains.anko.support.v4.startActivity
 import xin.lrvik.datacenter.pojo.Film
 import xin.lrvik.datacenter.pojo.PageInfo
 import xin.lrvik.smilemovie.R
-import xin.lrvik.smilemovie.injection.component.DaggerMoviesComponent
+import xin.lrvik.smilemovie.injection.component.DaggerFilmComponent
 import xin.lrvik.smilemovie.presenter.MoviesPresenter
 import xin.lrvik.smilemovie.presenter.view.MoviesView
+import xin.lrvik.smilemovie.ui.activity.FilmDetailActivity
 import xin.lrvik.smilemovie.ui.adapter.RvMoviesAdapter
 
 class MoviesFragment : BaseMvpFragment<MoviesPresenter>(), MoviesView {
@@ -21,13 +24,34 @@ class MoviesFragment : BaseMvpFragment<MoviesPresenter>(), MoviesView {
 
     private var partInfos: ArrayList<Film> = ArrayList()
 
+    lateinit var rvMoviesAdapter: RvMoviesAdapter
+
+    var curPage:Int=1
+
     override fun injectComponent() {
-        DaggerMoviesComponent.builder().activityComponent(activityComponent).build().inject(this)
+        DaggerFilmComponent.builder().activityComponent(activityComponent).build().inject(this)
         mPresenter.mView = this
     }
 
     override fun onMoviesResult(data: PageInfo) {
-        //toast(data.toString())
+        //会有2种情况，1，初始化来的数据，2，上拉加载来的数据
+
+        //下拉刷新
+        if (mSwipeRefresh.isRefreshing) {
+            mSwipeRefresh.isRefreshing = false
+            rvMoviesAdapter.setNewData(data.films)
+            rvMoviesAdapter.notifyDataSetChanged()
+        }else{//上拉加载数据
+            if(data.curPage==data.maxPage){//到底了
+                rvMoviesAdapter.loadMoreEnd()
+            }else{//还可以上拉
+                rvMoviesAdapter.loadMoreComplete()
+            }
+            rvMoviesAdapter.addData(data.films)
+        }
+
+        curPage=data.curPage
+
     }
 
 
@@ -37,9 +61,23 @@ class MoviesFragment : BaseMvpFragment<MoviesPresenter>(), MoviesView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        mSwipeRefresh.setOnRefreshListener { mPresenter.moviesData(type,1) }
         mRvMovie.layoutManager = GridLayoutManager(context, 3)
-        mRvMovie.adapter = RvMoviesAdapter(partInfos)
-        mPresenter.moviesData(type,1)
+        rvMoviesAdapter = RvMoviesAdapter(partInfos)
+        rvMoviesAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        mRvMovie.adapter = rvMoviesAdapter
+
+        rvMoviesAdapter.setOnLoadMoreListener({
+            mPresenter.moviesData(type,++curPage)
+        }, mRvMovie)
+
+        rvMoviesAdapter.setOnItemClickListener { adapter, view, position ->
+            var film = adapter.data[position] as Film
+            startActivity<FilmDetailActivity>("FILMURL" to film.detailUrl)
+        }
+        mSwipeRefresh.isRefreshing = true
+        mPresenter.moviesData(type, curPage)
     }
 
 

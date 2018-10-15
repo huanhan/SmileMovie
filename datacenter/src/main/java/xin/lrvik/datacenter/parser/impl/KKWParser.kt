@@ -99,7 +99,7 @@ class KKWParser : Parser {
             var detailUrl = a[0].attr("href")
             var otherInfo = a[0].getElementsByClass("title")[0].text()
             var title = a[0].attr("title")
-            var imgUrl = a[0].getElementsByTag("img").attr("src")
+            var imgUrl = "http:"+a[0].getElementsByTag("img").attr("src")
             var score = a[0].getElementsByClass("score")[0].text()
             films.add(Film(detailUrl, otherInfo, title, imgUrl, score))
         }
@@ -124,7 +124,7 @@ class KKWParser : Parser {
         val resize_vod = dom.getElementById("resize_vod")
         val vod_n_img = resize_vod.getElementsByClass("vod-n-img")
         val img = vod_n_img[0].getElementsByTag("img")
-        val imgUrl = img.attr("src")
+        val imgUrl = "http:"+img.attr("data-original")
         val title = img.attr("alt")
 
         val vod_n_l = resize_vod.getElementsByClass("vod-n-l")[0]
@@ -226,7 +226,7 @@ class KKWParser : Parser {
                 val a = li.getElementsByTag("a")
                 val detailUrl = a[0].attr("href")
                 val title = a[0].attr("title")
-                val imgUrl = a[0].getElementsByTag("img").attr("src")
+                val imgUrl = getHostUrl()+a[0].getElementsByTag("img").attr("src")
                 val otherInfo = li.getElementsByClass("title")[0].text()
                 films.add(Film(detailUrl, otherInfo, title, imgUrl))
             }

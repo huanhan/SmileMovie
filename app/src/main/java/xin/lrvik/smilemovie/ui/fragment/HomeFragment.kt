@@ -14,8 +14,6 @@ import java.util.*
 
 class HomeFragment : BaseFragment() {
 
-    lateinit var handler: ParseHandler
-
     private val mFragments by lazy { Stack<Fragment>() }
     private val mTitles by lazy { Stack<String>() }
 
@@ -27,13 +25,12 @@ class HomeFragment : BaseFragment() {
         if (mFragments.size == 0) {
             mFragments.add(RecommendFragment())
             mTitles.add(getString(R.string.recommend))
-            handler=ParseHandler()
-            handler.getTypeList().forEach {
+            ParseHandler.instance.getTypeList().forEach {
                 mTitles.add(it)
                 mFragments.add(MoviesFragment.newInstance(it))
             }
 
-            mTitles.addAll(handler.getTypeList())
+            mTitles.addAll(ParseHandler.instance.getTypeList())
         }
 
         mViewPager.adapter = VpHomeAdapter(activity!!.supportFragmentManager, mFragments, mTitles)

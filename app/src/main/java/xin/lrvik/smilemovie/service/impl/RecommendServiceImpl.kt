@@ -11,11 +11,8 @@ import javax.inject.Inject
  */
 class RecommendServiceImpl @Inject constructor() : RecommendService {
 
-    @Inject
-    lateinit var handler: ParseHandler
-
     override fun recommendData(method: (HomeInfos) -> Unit) {
-        handler.getHomeData{
+        ParseHandler.instance.getHomeData{
             method(it)
         }
     }

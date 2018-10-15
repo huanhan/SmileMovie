@@ -19,7 +19,6 @@ class MoviesPresenter @Inject constructor() : BasePresenter<MoviesView>() {
             return
         }
 
-        mView.showLoading()
 
         moviesService.moviesData(type, page) {
             mView.onMoviesResult(it)

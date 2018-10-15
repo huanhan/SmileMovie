@@ -19,9 +19,10 @@ class RecommendPresenter @Inject constructor() : BasePresenter<RecommendView>() 
             return
         }
 
-        mView.showLoading()
 
-        recommendService.recommendData { mView.onRecommendResult(it) }
+        recommendService.recommendData {
+            mView.onRecommendResult(it)
+        }
 
     }
 
