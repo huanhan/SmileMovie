@@ -1,5 +1,7 @@
 package xin.lrvik.datacenter.pojo
 
+import java.io.Serializable
+
 
 /**
  * 影片的详细信息
@@ -19,5 +21,5 @@ data class FilmInfos(var otherInfo: String,
                      var profile: String,
                      var introduction: String,
                      var playerUrls: List<List<Series>>,
-                     var downloadUrls: List<Series>)
+                     var downloadUrls: List<Series>):Serializable
 

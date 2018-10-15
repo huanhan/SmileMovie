@@ -1,5 +1,7 @@
 package xin.lrvik.datacenter.pojo
 
+import java.io.Serializable
+
 
 /**
  *
@@ -7,4 +9,4 @@ package xin.lrvik.datacenter.pojo
  * 影片真实地址，以及播放源名称
  */
 
-data class Series(var url: String,var name: String)
+data class Series(var url: String,var name: String): Serializable

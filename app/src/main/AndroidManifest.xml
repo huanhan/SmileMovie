@@ -21,7 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.FilmDetailActivity"></activity>
+        <activity android:name=".ui.activity.FilmDetailActivity" />
+        <activity android:name=".ui.activity.PlayerSrcActivity" />
+        <activity
+            android:name=".ui.activity.PlayerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoTitleFullscreen"></activity>
     </application>
 
 </manifest>

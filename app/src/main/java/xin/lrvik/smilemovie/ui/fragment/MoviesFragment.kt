@@ -65,7 +65,7 @@ class MoviesFragment : BaseMvpFragment<MoviesPresenter>(), MoviesView {
         mSwipeRefresh.setOnRefreshListener { mPresenter.moviesData(type,1) }
         mRvMovie.layoutManager = GridLayoutManager(context, 3)
         rvMoviesAdapter = RvMoviesAdapter(partInfos)
-        rvMoviesAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        rvMoviesAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
         mRvMovie.adapter = rvMoviesAdapter
 
         rvMoviesAdapter.setOnLoadMoreListener({

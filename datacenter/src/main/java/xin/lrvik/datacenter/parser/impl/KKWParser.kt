@@ -238,4 +238,9 @@ class KKWParser : Parser {
         val maxPage = split[1].trim { it <= ' ' }.toInt()
         return PageInfo(films, curPage, maxPage)
     }
+
+
+    override fun getPlayerUrl(url:String): String {
+        return getHostUrl()+url
+    }
 }

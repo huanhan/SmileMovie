@@ -5,6 +5,7 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_film_detail.*
 import lrvik.xin.base.ext.loadUrl
 import lrvik.xin.base.ui.activity.BaseMvpActivity
+import org.jetbrains.anko.startActivity
 import xin.lrvik.datacenter.pojo.FilmInfos
 import xin.lrvik.smilemovie.R
 import xin.lrvik.smilemovie.injection.component.DaggerFilmComponent
@@ -21,6 +22,10 @@ class FilmDetailActivity : BaseMvpActivity<FilmDetailPresenter>(), FilmDetailVie
         mTvDirector.text = "导演：" + data.director
         mTvFilmType.text = "类型：" + data.type
         mIvMovieImg.loadUrl(data.imgUrl)
+
+        mFabPlayer.setOnClickListener {
+            startActivity<PlayerSrcActivity>("FILMINFOS" to data)
+        }
     }
 
 

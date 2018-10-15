@@ -40,4 +40,7 @@ interface Parser {
 
     //搜索内容
     fun getSearchContent(html:String):PageInfo
+
+    //播放地址
+    fun getPlayerUrl(url:String): String
 }
