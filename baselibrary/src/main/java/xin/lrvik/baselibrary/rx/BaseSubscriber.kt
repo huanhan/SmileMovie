@@ -1,18 +1,18 @@
 package lrvik.xin.base.rx
 
+import io.reactivex.Observer
 import lrvik.xin.base.presenter.view.BaseView
-import rx.Subscriber
 
-open abstract class BaseSubscriber<T>(val view:BaseView): Subscriber<T>() {
+open abstract class BaseSubscriber<T>(val view:BaseView): Observer<T> {
 
-    override fun onCompleted() {
-        view.hideLoading()
-    }
-
-    override fun onError(e: Throwable?) {
+    override fun onError(e: Throwable) {
         view.hideLoading()
         if (e is BaseException) {
             view.onError(e.msg)
         }
+    }
+
+    override fun onComplete() {
+        view.hideLoading()
     }
 }

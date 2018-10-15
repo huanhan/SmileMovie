@@ -3,25 +3,34 @@ package lrvik.xin.base.ext
 import android.view.View
 import android.widget.ImageView
 import com.kotlin.base.utils.GlideUtils
-import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle2.LifecycleProvider
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import lrvik.xin.base.data.protocol.BaseResp
 import lrvik.xin.base.rx.BaseFunc
 import lrvik.xin.base.rx.BaseFuncBoolean
 import lrvik.xin.base.rx.BaseSubscriber
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 
 
-fun <T> Observable<T>.execute(subscribe:BaseSubscriber<T>,lifecycleProvider: LifecycleProvider<*>){
+fun <T> Observable<T>.execute(subscribe:BaseSubscriber<T>, lifecycleProvider: LifecycleProvider<*>){
     this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .compose(lifecycleProvider.bindToLifecycle())
+            .compose(lifecycleProvider.bindToLifecycle<T>())
             .subscribe(subscribe)
+}
+
+
+fun <T> Observable<T>.execute(lifecycleProvider: LifecycleProvider<*>,method: (data:T) -> Unit){
+    this.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .compose(lifecycleProvider.bindToLifecycle<T>())
+            .subscribe{method(it)}
 }
 
 fun <T> Observable<BaseResp<T>>.convert(): Observable<T> {
     return this.flatMap(BaseFunc())
+
 }
 
 fun <T> Observable<BaseResp<T>>.convertBoolean(): Observable<Boolean> {

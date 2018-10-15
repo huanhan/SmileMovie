@@ -1,7 +1,7 @@
 package lrvik.xin.base.ui.activity
 
 import android.os.Bundle
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import xin.lrvik.baselibrary.common.AppManger
 
 open class BaseActivity : RxAppCompatActivity() {

@@ -3,9 +3,7 @@ package xin.lrvik.smilemovie.injection.component
 import dagger.Component
 import lrvik.xin.base.injection.PerComponentScope
 import lrvik.xin.base.injection.component.ActivityComponent
-import xin.lrvik.smilemovie.injection.module.FilmDetailModule
 import xin.lrvik.smilemovie.injection.module.MoviesModule
-import xin.lrvik.smilemovie.injection.module.RecommendModule
 import xin.lrvik.smilemovie.ui.activity.FilmDetailActivity
 import xin.lrvik.smilemovie.ui.fragment.MoviesFragment
 import xin.lrvik.smilemovie.ui.fragment.RecommendFragment
@@ -16,9 +14,7 @@ import xin.lrvik.smilemovie.ui.fragment.RecommendFragment
  */
 @PerComponentScope
 @Component(dependencies = arrayOf(ActivityComponent::class),
-        modules = arrayOf(MoviesModule::class,
-                RecommendModule::class,
-                FilmDetailModule::class))
+        modules = arrayOf(MoviesModule::class))
 interface FilmComponent {
     fun inject(fragment: MoviesFragment)
     fun inject(fragment: RecommendFragment)

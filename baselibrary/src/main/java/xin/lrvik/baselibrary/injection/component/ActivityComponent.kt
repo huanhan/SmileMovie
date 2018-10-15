@@ -2,7 +2,7 @@ package lrvik.xin.base.injection.component
 
 import android.app.Activity
 import android.content.Context
-import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle2.LifecycleProvider
 import dagger.Component
 import lrvik.xin.base.injection.ActivityScope
 import lrvik.xin.base.injection.module.ActivityModule

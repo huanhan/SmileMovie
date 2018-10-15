@@ -2,7 +2,7 @@ package lrvik.xin.base.presenter
 
 import android.content.Context
 import com.kotlin.base.utils.NetWorkUtils
-import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle2.LifecycleProvider
 import lrvik.xin.base.presenter.view.BaseView
 import javax.inject.Inject
 

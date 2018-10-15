@@ -1,5 +1,8 @@
 package xin.lrvik.smilemovie.service
 
+import io.reactivex.Observable
+import xin.lrvik.datacenter.pojo.FilmInfos
+import xin.lrvik.datacenter.pojo.HomeInfos
 import xin.lrvik.datacenter.pojo.PageInfo
 
 /**
@@ -7,5 +10,7 @@ import xin.lrvik.datacenter.pojo.PageInfo
  *
  */
 interface MoviesService {
-    fun moviesData(type: String, page: Int,method: (PageInfo) -> Unit)
+    fun moviesData(type: String, page: Int): Observable<PageInfo>
+    fun recommendData(): Observable<HomeInfos>
+    fun getDetailData(url: String): Observable<FilmInfos>
 }

@@ -1,5 +1,6 @@
 package xin.lrvik.smilemovie.presenter
 
+import lrvik.xin.base.ext.execute
 import lrvik.xin.base.presenter.BasePresenter
 import xin.lrvik.smilemovie.presenter.view.MoviesView
 import xin.lrvik.smilemovie.service.MoviesService
@@ -19,8 +20,7 @@ class MoviesPresenter @Inject constructor() : BasePresenter<MoviesView>() {
             return
         }
 
-
-        moviesService.moviesData(type, page) {
+        moviesService.moviesData(type, page).execute(lifecycleProvider) {
             mView.onMoviesResult(it)
         }
 

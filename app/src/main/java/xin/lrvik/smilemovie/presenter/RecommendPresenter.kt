@@ -1,8 +1,9 @@
 package xin.lrvik.smilemovie.presenter
 
+import lrvik.xin.base.ext.execute
 import lrvik.xin.base.presenter.BasePresenter
 import xin.lrvik.smilemovie.presenter.view.RecommendView
-import xin.lrvik.smilemovie.service.RecommendService
+import xin.lrvik.smilemovie.service.MoviesService
 import javax.inject.Inject
 
 /**
@@ -12,15 +13,14 @@ import javax.inject.Inject
 class RecommendPresenter @Inject constructor() : BasePresenter<RecommendView>() {
 
     @Inject
-    lateinit var recommendService: RecommendService
+    lateinit var moviesService: MoviesService
 
     fun homeData() {
         if (!checkNetWork()) {
             return
         }
 
-
-        recommendService.recommendData {
+        moviesService.recommendData().execute(lifecycleProvider){
             mView.onRecommendResult(it)
         }
 

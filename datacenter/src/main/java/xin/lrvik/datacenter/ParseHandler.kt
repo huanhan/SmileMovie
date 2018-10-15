@@ -1,7 +1,7 @@
 package xin.lrvik.datacenter
 
+import io.reactivex.Observable
 import xin.lrvik.datacenter.data.repository.HtmlRepository
-import xin.lrvik.datacenter.ext.callback
 import xin.lrvik.datacenter.ext.parser
 import xin.lrvik.datacenter.parser.Parser
 import xin.lrvik.datacenter.parser.impl.BBYParser
@@ -49,27 +49,27 @@ class ParseHandler @Inject constructor() {
     }
 
     //获取首页数据
-    fun getHomeData(method: (HomeInfos) -> Unit) {
+    fun getHomeData(): Observable<HomeInfos> {
         var url = parser.getHomeUrl()
-        htmlRepository.getHtml(url).parser { parser.getHomeCotent(it) }.callback { method(it) }
+        return htmlRepository.getHtml(url).parser { parser.getHomeCotent(it) }
     }
 
     //获取分类数据
-    fun getTypeData(type: String, page: Int, method: (PageInfo) -> Unit) {
+    fun getTypeData(type: String, page: Int): Observable<PageInfo> {
         var url = parser.getTypeUrl(type, page)
-        htmlRepository.getHtml(url).parser { parser.getTypeContent(it) }.callback { method(it) }
+        return htmlRepository.getHtml(url).parser { parser.getTypeContent(it) }
     }
 
     //获取详细数据
-    fun getDetailData(url: String, method: (FilmInfos) -> Unit) {
+    fun getDetailData(url: String): Observable<FilmInfos> {
         var url = parser.getDetailUrl(url)
-        htmlRepository.getHtml(url).parser { parser.getDetailContent(it) }.callback { method(it) }
+        return htmlRepository.getHtml(url).parser { parser.getDetailContent(it) }
     }
 
     //获取搜索数据
-    fun getSearchData(key: String, page: Int, method: (PageInfo) -> Unit) {
+    fun getSearchData(key: String, page: Int): Observable<PageInfo> {
         var url = parser.getSearchUrl(key, page)
-        htmlRepository.getHtml(url).parser { parser.getSearchContent(it) }.callback { method(it) }
+        return htmlRepository.getHtml(url).parser { parser.getSearchContent(it) }
     }
 
 
