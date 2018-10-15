@@ -7,9 +7,6 @@ import com.trello.rxlifecycle2.LifecycleProvider
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import lrvik.xin.base.data.protocol.BaseResp
-import lrvik.xin.base.rx.BaseFunc
-import lrvik.xin.base.rx.BaseFuncBoolean
 import lrvik.xin.base.rx.BaseSubscriber
 
 
@@ -26,15 +23,6 @@ fun <T> Observable<T>.execute(lifecycleProvider: LifecycleProvider<*>,method: (d
             .observeOn(AndroidSchedulers.mainThread())
             .compose(lifecycleProvider.bindToLifecycle<T>())
             .subscribe{method(it)}
-}
-
-fun <T> Observable<BaseResp<T>>.convert(): Observable<T> {
-    return this.flatMap(BaseFunc())
-
-}
-
-fun <T> Observable<BaseResp<T>>.convertBoolean(): Observable<Boolean> {
-    return this.flatMap(BaseFuncBoolean())
 }
 
 

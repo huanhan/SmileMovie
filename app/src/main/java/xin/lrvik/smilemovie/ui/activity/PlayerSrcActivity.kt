@@ -64,7 +64,7 @@ class PlayerSrcActivity : BaseActivity() {
                 }
             }
 
-            //下载链接
+            //磁力链接
             val downloadUrls = filmInfos.downloadUrls
             if (downloadUrls != null && downloadUrls!!.isNotEmpty()) {
                 sectionSeriesTemp = SectionSeries(true, "迅雷下载")
