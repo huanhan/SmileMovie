@@ -5,8 +5,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
     android:orientation="vertical"
-    app:elevation="5dp"
-    app:cardCornerRadius="4dp">
+    android:background="@color/common_white"
+    app:cardCornerRadius="4dp"
+    app:elevation="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,8 +22,8 @@
                 android:id="@+id/iv_item_type_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:transitionName="home2detail"
-                android:padding="2dp" />
+                android:padding="2dp"
+                android:transitionName="home2detail" />
 
             <TextView
                 android:id="@+id/tv_item_type_sorce"
@@ -31,24 +32,24 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="6dp"
-                android:lines="1"
-                android:textSize="15sp"
-                android:textColor="#fff"
+                android:background="?attr/colorPrimary"
                 android:gravity="center"
-                android:background="?attr/colorPrimary" />
+                android:lines="1"
+                android:textColor="@color/common_white"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tv_item_type_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:background="#baaa"
-                android:textColor="#fff"
-                android:padding="2dp"
-                android:textSize="11sp"
+                android:layout_alignParentBottom="true"
                 android:layout_marginBottom="7dp"
-                android:lines="1" />
+                android:background="#baaa"
+                android:lines="1"
+                android:padding="2dp"
+                android:textColor="#fff"
+                android:textSize="11sp" />
         </RelativeLayout>
 
         <TextView

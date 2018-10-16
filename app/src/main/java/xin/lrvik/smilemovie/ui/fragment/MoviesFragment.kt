@@ -26,7 +26,7 @@ class MoviesFragment : BaseMvpFragment<MoviesPresenter>(), MoviesView {
 
     lateinit var rvMoviesAdapter: RvMoviesAdapter
 
-    var curPage:Int=1
+    var curPage: Int = 1
 
     override fun injectComponent() {
         DaggerFilmComponent.builder().activityComponent(activityComponent).build().inject(this)
@@ -41,16 +41,16 @@ class MoviesFragment : BaseMvpFragment<MoviesPresenter>(), MoviesView {
             mSwipeRefresh.isRefreshing = false
             rvMoviesAdapter.setNewData(data.films)
             rvMoviesAdapter.notifyDataSetChanged()
-        }else{//上拉加载数据
-            if(data.curPage==data.maxPage){//到底了
+        } else {//上拉加载数据
+            if (data.curPage == data.maxPage) {//到底了
                 rvMoviesAdapter.loadMoreEnd()
-            }else{//还可以上拉
+            } else {//还可以上拉
                 rvMoviesAdapter.loadMoreComplete()
             }
             rvMoviesAdapter.addData(data.films)
         }
 
-        curPage=data.curPage
+        curPage = data.curPage
 
     }
 
@@ -61,15 +61,17 @@ class MoviesFragment : BaseMvpFragment<MoviesPresenter>(), MoviesView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        mSwipeRefresh.setOnRefreshListener { mPresenter.moviesData(type,1) }
+        mSwipeRefresh.setOnRefreshListener {
+            curPage = 1
+            mPresenter.moviesData(type, curPage)
+        }
         mRvMovie.layoutManager = GridLayoutManager(context, 3)
         rvMoviesAdapter = RvMoviesAdapter(partInfos)
         rvMoviesAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
         mRvMovie.adapter = rvMoviesAdapter
 
         rvMoviesAdapter.setOnLoadMoreListener({
-            mPresenter.moviesData(type,++curPage)
+            mPresenter.moviesData(type, ++curPage)
         }, mRvMovie)
 
         rvMoviesAdapter.setOnItemClickListener { adapter, view, position ->

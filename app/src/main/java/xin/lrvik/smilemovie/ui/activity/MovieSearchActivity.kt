@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_movie_search.*
 import lrvik.xin.base.ui.activity.BaseMvpActivity
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.margin
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.startActivity
 import xin.lrvik.smilemovie.R
 import xin.lrvik.smilemovie.injection.component.DaggerFilmComponent
 import xin.lrvik.smilemovie.presenter.MovieSearchPresenter
@@ -21,7 +21,15 @@ import xin.lrvik.smilemovie.presenter.view.MovieSearchView
 class MovieSearchActivity : BaseMvpActivity<MovieSearchPresenter>(), MovieSearchView {
 
 
-    internal var colors = intArrayOf(Color.parseColor("#90C5ED"), Color.parseColor("#92CED6"), Color.parseColor("#F69153"), Color.parseColor("#BFAED0"), Color.parseColor("#E58F8E"), Color.parseColor("#66CCB7"), Color.parseColor("#F4BB7E"), Color.parseColor("#90C5ED"), Color.parseColor("#F79153"))
+    internal var colors = intArrayOf(Color.parseColor("#90C5ED"),
+            Color.parseColor("#92CED6"),
+            Color.parseColor("#F69153"),
+            Color.parseColor("#BFAED0"),
+            Color.parseColor("#E58F8E"),
+            Color.parseColor("#66CCB7"),
+            Color.parseColor("#F4BB7E"),
+            Color.parseColor("#90C5ED"),
+            Color.parseColor("#F79153"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +48,7 @@ class MovieSearchActivity : BaseMvpActivity<MovieSearchPresenter>(), MovieSearch
         mSearchView.setSuggestions(resources.getStringArray(R.array.query_suggestions))
         mSearchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                //todo 跳转到搜索展示界面
+                startActivity<SearchListActivity>("QUERY" to query)
                 return false
             }
 
@@ -77,7 +85,7 @@ class MovieSearchActivity : BaseMvpActivity<MovieSearchPresenter>(), MovieSearch
         }
 
         mFlowlayout.setOnTagClickListener { view, position, parent ->
-            toast(hotKeys[position])
+            startActivity<SearchListActivity>("QUERY" to hotKeys[position])
             true
         }
     }

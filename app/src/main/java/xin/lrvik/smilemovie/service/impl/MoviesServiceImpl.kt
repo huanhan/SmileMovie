@@ -25,4 +25,8 @@ class MoviesServiceImpl @Inject constructor() : MoviesService {
     override fun getDetailData(url: String): Observable<FilmInfos> {
         return ParseHandler.instance.getDetailData(url)
     }
+
+    override fun getSearchData(key: String, page: Int): Observable<PageInfo> {
+        return ParseHandler.instance.getSearchData(key, page)
+    }
 }

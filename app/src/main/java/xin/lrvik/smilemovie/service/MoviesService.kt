@@ -13,4 +13,5 @@ interface MoviesService {
     fun moviesData(type: String, page: Int): Observable<PageInfo>
     fun recommendData(): Observable<HomeInfos>
     fun getDetailData(url: String): Observable<FilmInfos>
+    fun getSearchData(key: String, page: Int): Observable<PageInfo>
 }

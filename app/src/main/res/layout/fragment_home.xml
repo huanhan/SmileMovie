@@ -2,7 +2,8 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/common_gray">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -13,8 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             android:padding="3dp"
             app:layout_scrollFlags="scroll|enterAlways|snap">
 
@@ -22,11 +23,11 @@
                 android:id="@+id/mRLSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/shape_ellipse_gray">
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_ellipse_gray"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
