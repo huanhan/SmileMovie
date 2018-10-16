@@ -20,7 +20,7 @@ class RecommendPresenter @Inject constructor() : BasePresenter<RecommendView>() 
             return
         }
 
-        moviesService.recommendData().execute(lifecycleProvider){
+        moviesService.recommendData().execute(lifecycleProvider,mView,false){
             mView.onRecommendResult(it)
         }
 

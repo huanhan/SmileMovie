@@ -20,7 +20,7 @@ class MoviesPresenter @Inject constructor() : BasePresenter<MoviesView>() {
             return
         }
 
-        moviesService.moviesData(type, page).execute(lifecycleProvider) {
+        moviesService.moviesData(type, page).execute(lifecycleProvider,mView,false) {
             mView.onMoviesResult(it)
         }
 

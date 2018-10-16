@@ -12,7 +12,7 @@ class SearchListPresenter @Inject constructor() : BasePresenter<SearchListView>(
     lateinit var service: MoviesService
 
     fun getSearchList(query: String, page: Int) {
-        service.getSearchData(query, page).execute(lifecycleProvider) {
+        service.getSearchData(query, page).execute(lifecycleProvider, mView, false) {
             mView.onSearchList(it)
         }
     }

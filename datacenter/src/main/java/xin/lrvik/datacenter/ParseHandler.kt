@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import xin.lrvik.datacenter.data.repository.HtmlRepository
 import xin.lrvik.datacenter.ext.parser
 import xin.lrvik.datacenter.parser.Parser
+import xin.lrvik.datacenter.parser.impl.JKParser
 import xin.lrvik.datacenter.parser.impl.KKWParser
 import xin.lrvik.datacenter.pojo.FilmInfos
 import xin.lrvik.datacenter.pojo.HomeInfos
@@ -29,7 +30,7 @@ class ParseHandler @Inject constructor() {
         lateinit var parser: Parser
 
         //将所有数据源加载在这里
-        val parsers by lazy { arrayListOf(KKWParser()) }
+        val parsers by lazy { arrayListOf(KKWParser(),JKParser()) }
 
         //更改标签切换源
         fun changeLable(lable: String) {
@@ -39,7 +40,7 @@ class ParseHandler @Inject constructor() {
     }
 
     init {
-        changeLable("")
+        changeLable("聚看")
     }
 
     //获取视频分类

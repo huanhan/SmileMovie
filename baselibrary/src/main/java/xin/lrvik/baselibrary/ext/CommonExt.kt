@@ -12,20 +12,13 @@ import io.reactivex.schedulers.Schedulers
 import lrvik.xin.base.presenter.view.BaseView
 import lrvik.xin.base.rx.BaseException
 
-/**
- * 不需要调用loading加载使用
- */
-fun <T> Observable<T>.execute(lifecycleProvider: LifecycleProvider<*>, method: (data: T) -> Unit) {
-    this.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .compose(lifecycleProvider.bindToLifecycle<T>())
-            .subscribe { method(it) }
-}
 
 /**
- * 需要调用loading加载使用
+ * isShowLoading是否显示Loading
  */
-fun <T> Observable<T>.execute(lifecycleProvider: LifecycleProvider<*>, mView: BaseView, function: (data: T) -> Unit) {
+fun <T> Observable<T>.execute(lifecycleProvider: LifecycleProvider<*>,
+                              mView: BaseView, isShowLoading: Boolean=true,
+                              function: (data: T) -> Unit) {
     this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .compose(lifecycleProvider.bindToLifecycle<T>())
@@ -34,16 +27,22 @@ fun <T> Observable<T>.execute(lifecycleProvider: LifecycleProvider<*>, mView: Ba
                 }
 
                 override fun onComplete() {
-                    mView.hideLoading()
+                    if (isShowLoading) {
+                        mView.hideLoading()
+                    }
                 }
 
                 override fun onNext(t: T) {
                     function(t)
-                    mView.hideLoading()
+                    if (isShowLoading) {
+                        mView.hideLoading()
+                    }
                 }
 
                 override fun onError(e: Throwable) {
-                    mView.hideLoading()
+                    if (isShowLoading) {
+                        mView.hideLoading()
+                    }
                     if (e is BaseException) {
                         mView.onError(e.msg)
                     }

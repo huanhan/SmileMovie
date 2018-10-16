@@ -9,19 +9,19 @@ import java.util.*
  * Author by 豢涵, Email huanhanfu@126.com, Date on 2018/10/14.
  *
  */
-class KKWParser : Parser {
+class JKParser : Parser {
 
 
     override fun getHostName(): String {
-        return "看看屋"
+        return "聚看"
     }
 
     override fun getHostUrl(): String {
-        return "https://m.kankanwu.com/"
+        return "https://m.jukantv.com/"
     }
 
     override fun getHomeUrl(): String {
-        return "https://m.kankanwu.com/"
+        return "https://m.jukantv.com/"
     }
 
     override fun getHomeCotent(html: String): HomeInfos {
@@ -30,7 +30,7 @@ class KKWParser : Parser {
         val films = ArrayList<Film>()
         val scrolls = ArrayList<Film>()
 
-        //看看屋首页正文
+        //首页正文
         val list_tab_img = dom.getElementsByClass("list_tab_img")
         var listTabImg = list_tab_img.filter { it.id() == "resize_list" }
         listTabImg.forEach {
@@ -42,20 +42,20 @@ class KKWParser : Parser {
                 val otherInfo = other[0].text()
                 val title = a[0].attr("title")
                 var img = a[0].getElementsByTag("img")
-                val imgUrl = "http:"+img.attr("src")
+                val imgUrl = img.attr("data-original")
                 var scoreInfo = a[0].getElementsByClass("score")
                 val score = if (scoreInfo.size > 0) scoreInfo[0].text() else ""
                 films.add(Film(detailUrl, otherInfo, title, imgUrl, score))
             }
         }
 
-        //看看屋首页滚动
+        //首页滚动
         val focusList = dom.getElementsByClass("focusList")[0]
-        val lis=focusList.getElementsByTag("li")
+        val lis = focusList.getElementsByTag("li")
         lis.forEach {
             val a = it.getElementsByTag("a")
             val href = a[0].attr("href")
-            val img = getHostUrl()+a[0].getElementsByTag("img").attr("src")
+            val img = a[0].getElementsByTag("img").attr("data-src")
             val em = a[0].getElementsByTag("em").text()
 
             scrolls.add(Film(detailUrl = href, imgUrl = img, title = em))
@@ -64,7 +64,7 @@ class KKWParser : Parser {
         //解析热词
         val hotKeys = ArrayList<String>()
 
-        val search_hotkey = dom.getElementsByClass("search_hotkey")[0]
+        val search_hotkey = dom.getElementsByClass("pLinks")[0]
         val eas = search_hotkey.getElementsByTag("a")
         eas.forEach {
             val text = it.text()
@@ -99,7 +99,7 @@ class KKWParser : Parser {
             var detailUrl = a[0].attr("href")
             var otherInfo = a[0].getElementsByClass("title")[0].text()
             var title = a[0].attr("title")
-            var imgUrl = "http:"+a[0].getElementsByTag("img").attr("src")
+            var imgUrl = a[0].getElementsByTag("img").attr("data-original")
             var score = a[0].getElementsByClass("score")[0].text()
             films.add(Film(detailUrl, otherInfo, title, imgUrl, score))
         }
@@ -124,7 +124,7 @@ class KKWParser : Parser {
         val resize_vod = dom.getElementById("resize_vod")
         val vod_n_img = resize_vod.getElementsByClass("vod-n-img")
         val img = vod_n_img[0].getElementsByTag("img")
-        val imgUrl = "http:"+img.attr("data-original")
+        val imgUrl = img.attr("data-original")
         val title = img.attr("alt")
 
         val vod_n_l = resize_vod.getElementsByClass("vod-n-l")[0]
@@ -151,16 +151,16 @@ class KKWParser : Parser {
         }.toString()
 
         //年份
-        val releaseTime = ps[4].getElementsByTag("a").text()
+        val releaseTime = ""
 
         //語言
         val language = ps[5].getElementsByTag("font").text()
 
         //地区
-        val area = ps[6].getElementsByTag("a")[0].text()
+        val area = ""
 
         //更新时间
-        val updateTime = ps[7].text().split("：")[1]
+        val updateTime = ps[5].text().split("：")[1]
 
         //简介
         val profile = vod_n_l.getElementsByTag("div")[0].text().split("：")[1]
@@ -226,8 +226,8 @@ class KKWParser : Parser {
                 val a = li.getElementsByTag("a")
                 val detailUrl = a[0].attr("href")
                 val title = a[0].attr("title")
-                val imgUrl = getHostUrl()+a[0].getElementsByTag("img").attr("src")
-                val otherInfo = li.getElementsByClass("title")[0].text()
+                val imgUrl = a[0].getElementsByTag("img").attr("data-original")
+                val otherInfo = li.getElementsByTag("p")[3].text()
                 films.add(Film(detailUrl, otherInfo, title, imgUrl))
             }
         }
@@ -236,11 +236,12 @@ class KKWParser : Parser {
         val split = strong.text().split("部")[1].split("/")
         val curPage = split[0].substring(1).toInt()
         val maxPage = split[1].trim { it <= ' ' }.toInt()
+
         return PageInfo(films, curPage, maxPage)
     }
 
 
-    override fun getPlayerUrl(url:String): String {
-        return getHostUrl()+url
+    override fun getPlayerUrl(url: String): String {
+        return getHostUrl() + url
     }
 }
