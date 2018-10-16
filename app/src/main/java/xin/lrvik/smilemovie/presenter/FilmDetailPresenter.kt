@@ -14,9 +14,8 @@ class FilmDetailPresenter @Inject constructor() : BasePresenter<FilmDetailView>(
     fun getDetailData(url: String) {
         mView.showLoading()
 
-        moviesService.getDetailData(url).execute(lifecycleProvider) {
+        moviesService.getDetailData(url).execute(lifecycleProvider,mView) {
             mView.getDetailData(it)
-            mView.hideLoading()
         }
 
     }

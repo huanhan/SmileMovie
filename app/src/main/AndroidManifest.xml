@@ -26,7 +26,8 @@
         <activity
             android:name=".ui.activity.PlayerActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/NoTitleFullscreen"></activity>
+            android:theme="@style/NoTitleFullscreen" />
+        <activity android:name=".ui.activity.MovieSearchActivity"></activity>
     </application>
 
 </manifest>

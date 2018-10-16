@@ -1,8 +1,6 @@
 package xin.lrvik.smilemovie.ui.activity
 
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.webkit.CookieSyncManager
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
@@ -14,7 +12,6 @@ import java.util.concurrent.TimeUnit
 
 class PlayerActivity : BaseActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,11 +35,19 @@ class PlayerActivity : BaseActivity() {
 
         mWebView.loadUrl(playerUrl)
 
-        Observable.timer(1000, TimeUnit.MILLISECONDS).subscribe {
-            mWebView.post {
-                mWebView.loadUrl("javascript:window.location.href=document.getElementsByTagName('iframe')[0].src")
+        //规定时间内内进行注入跳转
+        (1..30).forEach{
+            Observable.timer((it*300).toLong(), TimeUnit.MILLISECONDS).subscribe {
+                mWebView.post {
+                    mWebView.loadUrl(getInjectJs())
+                }
             }
         }
+    }
+
+    //document.getElementsByTagName('video')[0].src
+    fun getInjectJs(): String {
+        return "javascript:var src=document.getElementsByTagName('iframe')[0].src;if(src!=null) {javascript:window.location.href=src}"
     }
 
 

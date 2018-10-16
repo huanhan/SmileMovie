@@ -73,6 +73,13 @@ dependencies {
     //banner  此库用代码创建banner有问题，待优化
     api  "com.youth.banner:banner:$banner_version"
 
-    implementation 'com.android.support:multidex:1.0.2'
+    //解决dex过大
+    implementation "com.android.support:multidex:$multidex"
+
+    //搜索控件
+    api "com.miguelcatalan:materialsearchview:$material_search_view"
+
+    //流式布局控件
+    api "com.hyman:flowlayout-lib:$flowlayout"
 
 }

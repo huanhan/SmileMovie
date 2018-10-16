@@ -5,6 +5,7 @@ import lrvik.xin.base.injection.PerComponentScope
 import lrvik.xin.base.injection.component.ActivityComponent
 import xin.lrvik.smilemovie.injection.module.MoviesModule
 import xin.lrvik.smilemovie.ui.activity.FilmDetailActivity
+import xin.lrvik.smilemovie.ui.activity.MovieSearchActivity
 import xin.lrvik.smilemovie.ui.fragment.MoviesFragment
 import xin.lrvik.smilemovie.ui.fragment.RecommendFragment
 
@@ -19,4 +20,5 @@ interface FilmComponent {
     fun inject(fragment: MoviesFragment)
     fun inject(fragment: RecommendFragment)
     fun inject(filmDetailActivity: FilmDetailActivity)
+    fun inject(movieSearchActivity: MovieSearchActivity)
 }

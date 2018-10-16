@@ -44,7 +44,7 @@ class PlayerSrcActivity : BaseActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         filmInfos?.let {
-            actionBar?.setTitle(it.title)
+            actionBar?.title = it.title
 
             var i = 1
 
@@ -83,7 +83,7 @@ class PlayerSrcActivity : BaseActivity() {
             val rvSeriesAdapter = RVSeriesAdapter(R.layout.item_series_content, R.layout.item_series_title, sectionSeries)
 
             rvSeriesAdapter.setOnItemClickListener { adapter, view, position ->
-                val sectionSeries = sectionSeries.get(position)
+                val sectionSeries = sectionSeries[position]
                 if (!sectionSeries.isHeader) {
 
                     val url = sectionSeries.getmSeries()!!.url
