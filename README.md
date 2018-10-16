@@ -14,4 +14,4 @@
 <img src="https://github.com/huanhan/SmileMovie/blob/master/4.jpg" width="225" height="465" alt=""/>
 <img src="https://github.com/huanhan/SmileMovie/blob/master/5.jpg" width="225" height="465" alt=""/>
 <img src="https://github.com/huanhan/SmileMovie/blob/master/6.jpg" width="225" height="465" alt=""/>
-<p>
+</p>
