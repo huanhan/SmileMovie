@@ -15,7 +15,7 @@ import javax.inject.Inject
  * Author by 豢涵, Email huanhanfu@126.com, Date on 2018/10/14.
  *
  */
-class ParseHandler @Inject constructor() {
+class ParseHandler{
 
 
     var htmlRepository: HtmlRepository = HtmlRepository()
@@ -40,7 +40,7 @@ class ParseHandler @Inject constructor() {
     }
 
     init {
-        changeLable("聚看")
+        changeLable("")
     }
 
     //获取视频分类

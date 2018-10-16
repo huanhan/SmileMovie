@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.kotlin.base.utils.AppPrefsUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import lrvik.xin.base.ext.onClick
 import lrvik.xin.base.ui.fragment.BaseFragment
@@ -13,6 +14,7 @@ import xin.lrvik.datacenter.ParseHandler
 import xin.lrvik.smilemovie.R
 import xin.lrvik.smilemovie.ui.activity.MovieSearchActivity
 import xin.lrvik.smilemovie.ui.adapter.VpHomeAdapter
+import xin.lrvik.smilemovie.ui.dialog.SelectSrcDialogFragment
 import java.util.*
 
 class HomeFragment : BaseFragment() {
@@ -28,6 +30,9 @@ class HomeFragment : BaseFragment() {
         if (mFragments.size == 0) {
             mFragments.add(RecommendFragment())
             mTitles.add(getString(R.string.recommend))
+            val src = AppPrefsUtils.getString("src")
+            ParseHandler.changeLable(src)
+
             ParseHandler.instance.getTypeList().forEach {
                 mTitles.add(it)
                 mFragments.add(MoviesFragment.newInstance(it))
@@ -41,6 +46,10 @@ class HomeFragment : BaseFragment() {
 
         mRLSearch.onClick {
             startActivity<MovieSearchActivity>()
+        }
+
+        mIvChangeSrc.onClick {
+            SelectSrcDialogFragment.showDialog(activity!!.supportFragmentManager)
         }
     }
 
