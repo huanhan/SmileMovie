@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="倾听的文字倾听的文字倾听的文字倾听的文字倾听的文字倾听的文字倾听的文字" />
+                android:text="你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？" />
 
         </LinearLayout>
 

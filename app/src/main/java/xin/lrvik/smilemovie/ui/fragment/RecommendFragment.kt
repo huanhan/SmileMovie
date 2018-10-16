@@ -47,6 +47,10 @@ class RecommendFragment : BaseMvpFragment<RecommendPresenter>(), RecommendView {
         }
         banner.update(bannerImgs)
 
+        banner.setOnBannerListener {
+            startActivity<FilmDetailActivity>("FILMURL" to data.scrollInfos[it].detailUrl)
+        }
+
         //设置图片集合
         banner.start()
     }

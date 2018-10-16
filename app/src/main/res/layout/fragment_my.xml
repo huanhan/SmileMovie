@@ -9,11 +9,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/test" />
+            android:background="@color/common_red">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="20dp"
+                android:text="笑脸影视"
+                android:textColor="@color/common_white"
+                android:textSize="30dp" />
+        </RelativeLayout>
 
         <!--磁力搜索，电视，点击进群，关注公众号，9.9去广告，免责声明，分享-->
         <LinearLayout
@@ -27,7 +38,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_black_24dp" />
+                android:src="@drawable/ic_clear_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,7 +54,8 @@
             android:layout_marginTop="1dp"
             android:background="@color/common_white"
             android:gravity="center_vertical"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -64,7 +76,8 @@
             android:layout_marginTop="1dp"
             android:background="@color/common_white"
             android:gravity="center_vertical"
-            android:padding="15dp">
+            android:padding="15dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
