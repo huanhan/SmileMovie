@@ -15,7 +15,7 @@ import javax.inject.Inject
  * Author by 豢涵, Email huanhanfu@126.com, Date on 2018/10/14.
  *
  */
-class ParseHandler{
+class ParseHandler {
 
 
     var htmlRepository: HtmlRepository = HtmlRepository()
@@ -30,12 +30,19 @@ class ParseHandler{
         lateinit var parser: Parser
 
         //将所有数据源加载在这里
-        val parsers by lazy { arrayListOf(KKWParser(),JKParser()) }
+        val parsers by lazy { arrayListOf(JKParser()) }
 
         //更改标签切换源
         fun changeLable(lable: String) {
             this.lable = lable
-            parser = if (lable.isEmpty()) parsers[0] else parsers.filter { it.getHostName() == this.lable }[0]
+            //parser = if (lable.isEmpty()) parsers[0] else parsers.filter { it.getHostName() == this.lable }[0]
+
+            parser = parsers[0]//默认选择第一个
+            parsers.forEachIndexed { index, value ->
+                if (value.getHostName() == lable) {
+                    parser = parsers[index]
+                }
+            }
         }
     }
 
