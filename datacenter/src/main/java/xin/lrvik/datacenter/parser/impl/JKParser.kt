@@ -233,9 +233,14 @@ class JKParser : Parser {
         }
         val dompageinfo = dom.getElementsByClass("ui-vpages")
         val strong = dompageinfo[0].getElementsByTag("strong")
-        val split = strong.text().split("部")[1].split("/")
-        val curPage = split[0].substring(1).toInt()
-        val maxPage = split[1].trim { it <= ' ' }.toInt()
+        val split: List<String>
+        var curPage = 0
+        var maxPage = 0
+        if (strong.text().split("部").size == 2) {
+            split = strong.text().split("部")[1].split("/")
+            curPage = split[0].substring(1).toInt()
+            maxPage = split[1].trim { it <= ' ' }.toInt()
+        }
 
         return PageInfo(films, curPage, maxPage)
     }

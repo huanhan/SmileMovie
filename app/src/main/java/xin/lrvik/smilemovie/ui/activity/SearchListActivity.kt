@@ -24,6 +24,13 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
     lateinit var query: String
 
     override fun onSearchList(data: PageInfo) {
+        if (data.films.isEmpty()) {
+            if (mSwipeRefresh.isRefreshing) {
+                mSwipeRefresh.isRefreshing = false
+                return
+            }
+        }
+
         if (curPage <= data.maxPage) {
             if (mSwipeRefresh.isRefreshing) {
                 mSwipeRefresh.isRefreshing = false
@@ -71,6 +78,7 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
         mRvMovie.layoutManager = GridLayoutManager(context, 3)
         rvMoviesAdapter = RvMoviesAdapter(partInfos)
         rvMoviesAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
+        rvMoviesAdapter.setEmptyView(R.layout.view_empty,mRvMovie)
         mRvMovie.adapter = rvMoviesAdapter
 
         rvMoviesAdapter.setOnLoadMoreListener({
