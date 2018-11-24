@@ -1,4 +1,4 @@
-# SmileMovie完善中~~~
+# SmileMovie笑脸影视~~~
 
 基于Kotlin+MVP+Rxjava2+okhttp3+Retrofit2+Dagger2的安卓电影爬虫app
 
