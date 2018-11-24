@@ -9,4 +9,6 @@
     <string name="variety">综艺</string>
     <string name="comic">动漫</string>
     <string name="search_tip">搜你想看</string>
+    <string name="github">https://github.com/huanhan/SmileMovie</string>
+    <string name="mianze">本软件仅供学习使用，本软件已开放源代码，无病毒、不收集用户隐私信息。一切因使用“SmileMovie”造成的任何后果，SmileMovie概不负责，亦不承担任何法律责任!</string>
 </resources>

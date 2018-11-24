@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？你瞅啥？" />
+                android:text="基于Kotlin+MVP+Rxjava2+okhttp3+Retrofit2+Dagger2的安卓电影爬虫app,仅供学习交流使用" />
 
         </LinearLayout>
 

@@ -81,5 +81,5 @@ dependencies {
 
     //流式布局控件
     api "com.hyman:flowlayout-lib:$flowlayout"
-
+    api 'com.bigkoo:alertview:1.0.3'
 }
