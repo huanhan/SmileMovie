@@ -12,6 +12,7 @@ import lrvik.xin.base.ui.fragment.BaseFragment
 import org.jetbrains.anko.support.v4.startActivity
 import xin.lrvik.datacenter.ParseHandler
 import xin.lrvik.smilemovie.R
+import xin.lrvik.smilemovie.ui.activity.HistoryActivity
 import xin.lrvik.smilemovie.ui.activity.MovieSearchActivity
 import xin.lrvik.smilemovie.ui.adapter.VpHomeAdapter
 import xin.lrvik.smilemovie.ui.dialog.SelectSrcDialogFragment
@@ -50,6 +51,10 @@ class HomeFragment : BaseFragment() {
 
         mIvChangeSrc.onClick {
             SelectSrcDialogFragment.showDialog(activity!!.supportFragmentManager)
+        }
+
+        mIvHistory.onClick {
+            startActivity<HistoryActivity>()
         }
     }
 

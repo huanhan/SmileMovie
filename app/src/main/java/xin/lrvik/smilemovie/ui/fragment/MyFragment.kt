@@ -10,6 +10,7 @@ import lrvik.xin.base.ui.fragment.BaseFragment
 import xin.lrvik.smilemovie.R
 import android.content.Intent
 import android.net.Uri
+import lrvik.xin.base.ext.onClick
 
 
 class MyFragment : BaseFragment() {
@@ -19,24 +20,24 @@ class MyFragment : BaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        mLlEmail.setOnClickListener {
+        mLlEmail.onClick {
             val uri = Uri.parse("mailto:huanhanfu@126.com")
             val it = Intent(Intent.ACTION_SENDTO, uri)
             startActivity(it)
         }
 
-        mLlGithub.setOnClickListener {
+        mLlGithub.onClick {
             val uri = Uri.parse(context!!.resources.getString(R.string.github))
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }
 
-        mLlFollow.setOnClickListener {
+        mLlFollow.onClick {
             AlertView("提示", "暂无公众号", null, listOf("确定").toTypedArray(), null, activity,
                     AlertView.Style.Alert, null).show()
         }
 
-        mLlMainZe.setOnClickListener {
+        mLlMainZe.onClick {
             AlertView("免责声明", context!!.resources.getString(R.string.mianze), null, listOf("确定").toTypedArray(), null, activity,
                     AlertView.Style.Alert, null).show()
         }
